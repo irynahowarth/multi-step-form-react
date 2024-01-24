@@ -1,0 +1,136 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+ul,ol,p{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color:  hsl(217, 100%, 97%);
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  color: hsl(231, 11%, 63%);
+}
+
+form{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-wrapper{
+  background-color: hsl(0, 0%, 100%);
+  display: flex;
+  max-width: 850px;
+  border-radius: 10px;
+  padding: 14px;
+}
+.form-header{
+  min-width: 248px;
+  background-color: hsl(243, 100%, 62%);
+  border-radius: 10px;
+  padding-left:30px;
+  padding-top: 36px;
+  background-image: url(../src/assets/bg-sidebar-desktop.svg);
+  background-size: cover;
+  background-position: center;
+}
+
+.form-header li{
+  list-style-type: none;
+  background: none;
+  border: none;
+  display: flex;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+  color: hsl(0, 0%, 100%);
+  margin-bottom: 30px;
+  width: 100%;
+}
+.form-header li.active .marker-circle{
+  background-color: hsl(206, 94%, 87%);
+  color: hsl(213, 96%, 18%);
+  border: none;
+}
+
+.form-header .marker-circle{
+  margin-right: 14px;
+  padding: 7px 11px;
+  border: 1px solid hsl(0, 0%, 100%);
+  border-radius: 50%;
+  color: hsl(0, 0%, 100%);
+  font-weight: 700;
+  font-size: 14px;
+}
+.form-header li span{
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.section-wrapper{
+  padding: 36px 90px;
+  display: flex;
+  flex-direction: column;
+  gap:23px;
+}
+
+.actions{
+flex-direction: row;
+justify-content: space-between;
+}
+
+h1{
+  color: hsl(213, 96%, 18%);
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+p{
+  margin-bottom: 14px;
+}
+
+label{
+  font-size: 13px;
+  display: block;
+  color: hsl(213, 96%, 18%);
+  margin-bottom: 7px;
+}
+
+input{
+  width: 100%;
+  padding: 13px;
+  border-radius: 5px;
+  border: 1px solid hsl(229, 24%, 87%);
+  color: hsl(231, 11%, 63%);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.btn{
+  border: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: transparent;
+  color: hsl(231, 11%, 63%);
+}
+.btn:hover{
+  color:hsl(213, 96%, 18%);
+}
+.btn.primary{
+  background-color: hsl(213, 96%, 18%);
+  border-radius: 6px;
+  color:  hsl(0, 0%, 100%);
+  border: transparent;
+  font-weight: 700;
+  cursor: pointer;
+  padding:14px 22px;
+}
+.btn.primary:hover{
+  background-color: hsl(228, 100%, 84%);
+  color:  hsl(0, 0%, 100%);
+}
