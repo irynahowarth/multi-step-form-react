@@ -240,7 +240,7 @@ function App() {
             </section>
           )}
           {step !== 5 && (
-            <section className="section-wrapper actions">
+            <section className="section-actions">
               {step !== 1 && (
                 <button
                   type="button"
@@ -260,12 +260,16 @@ function App() {
             </section>
           )}
           {step === 5 && (
-            <section className="section-wrapper">
+            <section className="section-wrapper section-final">
+              <img src={"../src/assets/icon-thank-you.svg"} />
               <h1>Thank you!</h1>
               <p>
                 Thanks for confirming your subscription! We hope you have fun
                 using our platform. If you ever need support, please feel free
-                to email us at support@loremgaming.com
+                to email us at{" "}
+                <a href="mailto:support@loremgaming.com">
+                  support@loremgaming.com
+                </a>
               </p>
             </section>
           )}
