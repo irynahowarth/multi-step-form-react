@@ -10,19 +10,19 @@ const PLANS = [
   {
     name: "arcade",
     label: "Arcade",
-    price: [{ month: "$9/mo" }, { year: "$90/yr" }],
+    price: { month: "$9/mo", year: "$90/yr" },
     offer: "2 months free",
   },
   {
     name: "advanced",
     label: "Advanced",
-    price: [{ month: "$12/mo" }, { year: "$120/yr" }],
+    price: { month: "$12/mo", year: "$120/yr" },
     offer: "2 months free",
   },
   {
     name: "pro",
     label: "Pro",
-    price: [{ month: "$15/mo" }, { year: "$150/yr" }],
+    price: { month: "$15/mo", year: "$150/yr" },
     offer: "2 months free",
   },
 ];
@@ -30,13 +30,20 @@ const PLANS = [
 function App() {
   const id = React.useId();
   const [step, setStep] = React.useState(1);
+  const [period, setPeriod] = React.useState("month");
+  const [planChoice, setPlanChoice] = React.useState(PLANS[0].name);
+
+  function handleChangeStep(newStep) {
+    setStep(newStep);
+  }
+
   return (
     <form>
       <div className="form-wrapper">
         <header className="form-header">
           <ol>
             {STEPS.map(({ value, label }) => (
-              <li key={value} className={value === 1 ? "active" : undefined}>
+              <li key={value} className={value === step ? "active" : undefined}>
                 <div className="marker-circle">{value}</div>
                 <div>
                   <span>{`step ${value}`}</span>
@@ -71,37 +78,36 @@ function App() {
           )}
           {step === 2 && (
             <section className="section-wrapper">
-              <h1>Select your plan</h1>
-              <p>You have the option of monthly or yearly billing.</p>
+              <div>
+                <h1>Select your plan</h1>
+                <p>You have the option of monthly or yearly billing.</p>
+              </div>
               <ul>
-                <li>
-                  <input type="radio" />
-                  <label htmlFor="">
-                    <h4>Arcade</h4>
-                    <span>$90/year</span>
-                    <span>2 months free</span>
-                  </label>
-                </li>
-                <li>
-                  <input type="radio" />
-                  <label htmlFor="">
-                    <h4>Advanced</h4>
-                    <span>$90/year</span>
-                    <span>2 months free</span>
-                  </label>
-                </li>
-                <li>
-                  <input type="radio" />
-                  <label htmlFor="">
-                    <h4>Pro</h4>
-                    <span>$90/year</span>
-                    <span>2 months free</span>
-                  </label>
-                </li>
+                {PLANS.map(({ name, label, price, offer }, index) => (
+                  <li key={name}>
+                    <input
+                      type="radio"
+                      id={`${name}-${index}`}
+                      value={name}
+                      checked={planChoice === name}
+                      onChange={(event) => setPlanChoice(event.target.value)}
+                    />
+                    <label htmlFor={`${name}-${index}`}>
+                      <h4>{label}</h4>
+                      <span>{price[period]}</span>
+                      {period === "year" && <span>{offer}</span>}
+                    </label>
+                  </li>
+                ))}
               </ul>
               <div>
                 <span>Monthly</span>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setPeriod(period === "month" ? "year" : "month")
+                  }
+                >
                   <span></span>
                 </button>
                 <span>Yearly</span>
@@ -165,10 +171,20 @@ function App() {
           )}
           {step !== 5 && (
             <section className="section-wrapper actions">
-              <button type="button" className="btn">
-                Go Back
-              </button>
-              <button type="button" className="btn primary">
+              {step !== 1 && (
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => handleChangeStep(step - 1)}
+                >
+                  Go Back
+                </button>
+              )}
+              <button
+                type="button"
+                className="btn primary"
+                onClick={() => handleChangeStep(step + 1)}
+              >
                 Next Step
               </button>
             </section>
