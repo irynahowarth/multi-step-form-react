@@ -48,6 +48,9 @@ form{
   background-size: cover;
   background-position: center;
 }
+main{
+  min-width: 588px;
+}
 
 .form-header li{
   background: none;
@@ -221,4 +224,58 @@ input{
   aspect-ratio: 1 / 1;
   background:hsl(0, 0%, 100%);
   border-radius: 1000px;
+}
+
+.add-ons-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.add-ons-wrapper>div{
+  display: flex;
+  gap:18px;
+  
+}
+
+.add-ons-wrapper input{
+  width: auto;
+
+}
+.add-ons-wrapper input[type=checkbox]{
+  accent-color:  hsl(243, 100%, 62%);
+ 
+}
+.add-ons-wrapper label{
+  border: 1px solid hsl(229, 24%, 87%);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  gap:10px;
+  padding: 18px 20px;
+}
+
+
+.add-ons-wrapper label.checked{
+  background-color: hsl(217, 100%, 97%);
+  border-color: hsl(243, 100%, 62%);;
+}
+
+
+.add-ons-wrapper label h4{
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.add-ons-wrapper label div:last-child{
+  margin-left: auto;
+  color: hsl(243, 100%, 62%);
+}
+.add-ons-wrapper label span{
+  font-size: 13px;
+  font-weight: 400;
+  color:hsl(231, 11%, 63%);
 }

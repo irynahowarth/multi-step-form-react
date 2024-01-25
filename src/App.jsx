@@ -27,11 +27,33 @@ const PLANS = [
   },
 ];
 
+const ADD_ONS = [
+  {
+    ids: 1,
+    title: "Online service",
+    description: "Access to multiplayer games",
+    price: { month: "$1/mo", year: "$10/yr" },
+  },
+  {
+    ids: 2,
+    title: "Large storage",
+    description: "Extra 1TB of cloud save",
+    price: { month: "$2/mo", year: "$20/yr" },
+  },
+  {
+    ids: 3,
+    title: "Customizable Profile",
+    description: "Custom theme on your profile",
+    price: { month: "$2/mo", year: "$20/yr" },
+  },
+];
+
 function App() {
   const id = React.useId();
   const [step, setStep] = React.useState(1);
   const [period, setPeriod] = React.useState("month");
   const [planChoice, setPlanChoice] = React.useState(PLANS[0].name);
+  const [addOns, setAddOns] = React.useState([1, 3]);
 
   function handleChangeStep(newStep) {
     setStep(newStep);
@@ -116,7 +138,7 @@ function App() {
                     style={{
                       transition: "transform 300ms",
                       transform: `translateX(${
-                        period === "month" ? "140%" : "0%"
+                        period === "year" ? "140%" : "0%"
                       })`,
                     }}
                   />
@@ -129,37 +151,40 @@ function App() {
           )}
           {step === 3 && (
             <section className="section-wrapper">
-              <h1>Pick Add-ons</h1>
-              <p>Add-ons help enhance your gaming experience.</p>
               <div>
-                <input type="checkbox" />
-                <label>
-                  <div>
-                    <h4>Online service</h4>
-                    <p>Access to multiplayer games</p>
-                  </div>
-                  <div>+$1/mo</div>
-                </label>
+                <h1>Pick Add-ons</h1>
+                <p>Add-ons help enhance your gaming experience.</p>
               </div>
-              <div>
-                <input type="checkbox" />
-                <label>
-                  <div>
-                    <h4>Large storage</h4>
-                    <p>Extra 1TB of cloud save</p>
-                  </div>
-                  <div>+$2/mo</div>
-                </label>
-              </div>
-              <div>
-                <input type="checkbox" />
-                <label>
-                  <div>
-                    <h4>Customizable Profile</h4>
-                    <p>Custom theme on your profile</p>
-                  </div>
-                  <div>+$2/mo</div>
-                </label>
+              <div className="add-ons-wrapper">
+                {ADD_ONS.map(({ ids, title, description, price }) => {
+                  const addonsId = `${title}-${id}`;
+
+                  return (
+                    <div key={addonsId}>
+                      <label
+                        htmlFor={addonsId}
+                        className={addOns.includes(ids) ? "checked" : undefined}
+                      >
+                        <input
+                          type="checkbox"
+                          id={addonsId}
+                          checked={addOns.includes(ids)}
+                          onChange={(e) => {
+                            const newAddOns = e.target.checked
+                              ? [...addOns, ids]
+                              : addOns.filter((el) => el != ids);
+                            setAddOns(newAddOns);
+                          }}
+                        />
+                        <div>
+                          <h4>{title}</h4>
+                          <span>{description}</span>
+                        </div>
+                        <div>{price[period]}</div>
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
             </section>
           )}
