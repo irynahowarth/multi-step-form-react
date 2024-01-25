@@ -82,35 +82,48 @@ function App() {
                 <h1>Select your plan</h1>
                 <p>You have the option of monthly or yearly billing.</p>
               </div>
-              <ul>
-                {PLANS.map(({ name, label, price, offer }, index) => (
-                  <li key={name}>
-                    <input
-                      type="radio"
-                      id={`${name}-${index}`}
-                      value={name}
-                      checked={planChoice === name}
-                      onChange={(event) => setPlanChoice(event.target.value)}
-                    />
-                    <label htmlFor={`${name}-${index}`}>
-                      <h4>{label}</h4>
-                      <span>{price[period]}</span>
-                      {period === "year" && <span>{offer}</span>}
-                    </label>
+              <ul className="plans-selection">
+                {PLANS.map(({ name, label, price, offer }) => (
+                  <li
+                    key={name}
+                    className={
+                      planChoice === name ? "selected-plan" : undefined
+                    }
+                    onClick={() => setPlanChoice(name)}
+                    style={{
+                      backgroundImage: `url(../src/assets/icon-${name}.svg)`,
+                    }}
+                  >
+                    <h4>{label}</h4>
+                    <span className="plan-price">{price[period]}</span>
+                    {period === "year" && <span>{offer}</span>}
                   </li>
                 ))}
               </ul>
-              <div>
-                <span>Monthly</span>
+              <div className="plan-period">
+                <span className={period === "month" ? "selected" : undefined}>
+                  Monthly
+                </span>
                 <button
                   type="button"
+                  className="switch"
                   onClick={() =>
                     setPeriod(period === "month" ? "year" : "month")
                   }
                 >
-                  <span></span>
+                  <span
+                    className="switch-ball"
+                    style={{
+                      transition: "transform 300ms",
+                      transform: `translateX(${
+                        period === "month" ? "140%" : "0%"
+                      })`,
+                    }}
+                  />
                 </button>
-                <span>Yearly</span>
+                <span className={period === "year" ? "selected" : undefined}>
+                  Yearly
+                </span>
               </div>
             </section>
           )}

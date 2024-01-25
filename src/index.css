@@ -8,7 +8,7 @@ html, body{
   margin: 0;
   padding: 0;
 }
-ul,ol,p{
+ul,ol,p,h4{
   margin: 0;
   padding: 0;
 }
@@ -143,4 +143,82 @@ input{
 .btn.primary:hover{
   background-color: hsl(228, 100%, 84%);
   color:  hsl(0, 0%, 100%);
+}
+
+.plans-selection{
+  display: flex;
+  gap:20px;
+}
+
+.plans-selection li{
+  border: 1px solid hsl(231, 11%, 63%);
+  border-radius: 5px;
+  padding: 102px 15px 16px ;
+  cursor: pointer;
+  width: 136px;
+  min-height: 158px;
+  background-repeat: no-repeat;
+  background-position: 15px 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 11px;
+  margin-top: 15px;
+}
+
+.plans-selection li.selected-plan{
+  background-color: hsl(217, 100%, 97%);
+  border-color:hsl(243, 100%, 62%) ;
+}
+
+.plans-selection h4{
+  font-size: 16px;
+  font-weight: 500;
+  color: hsl(213, 96%, 18%);
+}
+.plans-selection  span.plan-price{
+  color: hsl(231, 11%, 63%);
+  font-size: 13px;
+}
+.plans-selection span{
+  font-size: 12px;
+  display: block;
+  color: hsl(213, 96%, 18%);
+}
+
+.plan-period{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  background-color: hsl(217, 100%, 97%);
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.plan-period .selected{
+  color: hsl(213, 96%, 18%);
+}
+
+.switch {
+  display: block;
+  background-color: hsl(213, 96%, 18%);
+  width: 36px;
+  height: 15px;
+  border-radius: 1000px;
+  border: none;
+  padding: 4px;
+  border: 1px solid white;
+  cursor: pointer;
+  box-sizing: content-box;
+  outline-offset: 6px;
+}
+
+.switch-ball {
+  display: block;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background:hsl(0, 0%, 100%);
+  border-radius: 1000px;
 }
