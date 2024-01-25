@@ -199,17 +199,22 @@ function App() {
                 <h1>Finishing up</h1>
                 <p>Double-check everything looks OK before confirming.</p>
               </div>
-              <dl>
-                <dt>
-                  <span>
-                    {planChoice.label}
-                    {period === "month" ? " (Monthly)" : " (Yearly)"}
-                  </span>
-                  <button type="button" onClick={() => setStep(2)}>
-                    Change
-                  </button>
-                </dt>
-                <dd>{`$${planChoice.price[period]}/${preffix}`}</dd>
+              <div className="summary-wrapper">
+                <div className="summary-plan">
+                  <div>
+                    <h4>{`${planChoice.label}${
+                      period === "month" ? " (Monthly)" : " (Yearly)"
+                    }`}</h4>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => setStep(2)}
+                    >
+                      Change
+                    </button>
+                  </div>
+                  <span>{`$${planChoice.price[period]}/${preffix}`}</span>
+                </div>
 
                 {addOns.length > 0 &&
                   addOns.map((add) => {
@@ -219,16 +224,19 @@ function App() {
                     sumAddOns += price[period];
 
                     return (
-                      <div key={add}>
-                        <dt>{title}</dt>
-                        <dd>{`$${price[period]}/${preffix}`}</dd>
+                      <div key={add} className="summary-addon">
+                        <div>{title}</div>
+                        <span>{`+$${price[period]}/${preffix}`}</span>
                       </div>
                     );
                   })}
-
-                <dt>Total(per month)</dt>
-                <dd>{`$${sumAddOns + planChoice.price[period]}/${preffix}`}</dd>
-              </dl>
+              </div>
+              <div className="summary-total">
+                <div>{`Total (per ${period})`}</div>
+                <span>{`$${
+                  sumAddOns + planChoice.price[period]
+                }/${preffix}`}</span>
+              </div>
             </section>
           )}
           {step !== 5 && (
@@ -244,10 +252,10 @@ function App() {
               )}
               <button
                 type="button"
-                className="btn primary"
+                className={step !== 4 ? "btn primary" : "btn primary confirm"}
                 onClick={() => handleChangeStep(step + 1)}
               >
-                Next Step
+                {step !== 4 ? "Next Step" : "Confirm"}
               </button>
             </section>
           )}

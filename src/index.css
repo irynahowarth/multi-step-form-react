@@ -147,6 +147,10 @@ input{
   background-color: hsl(228, 100%, 84%);
   color:  hsl(0, 0%, 100%);
 }
+.btn.confirm{
+  background-color: hsl(243, 100%, 62%);
+  color:  hsl(0, 0%, 100%);
+}
 
 .plans-selection{
   display: flex;
@@ -278,4 +282,52 @@ input{
   font-size: 13px;
   font-weight: 400;
   color:hsl(231, 11%, 63%);
+}
+
+.summary-wrapper{
+  color:hsl(231, 11%, 63%);
+  font-size: 13px;
+  background-color: hsl(217, 100%, 97%);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.summary-wrapper .btn{
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0;
+}
+
+.summary-wrapper >div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.summary-plan h4, .summary-plan span{
+  color: hsl(213, 96%, 18%);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.summary-plan + .summary-addon{
+  border-top: 1px solid hsl(229, 24%, 87%);
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.summary-addon{
+  margin-bottom: 10px;
+}
+.summary-addon span{
+  color: hsl(213, 96%, 18%);
+}
+.summary-total{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.summary-total span{
+  color: hsl(243, 100%, 62%);
+  font-size: 18px;
+  font-weight: 500;
 }
