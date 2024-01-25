@@ -10,19 +10,19 @@ const PLANS = [
   {
     name: "arcade",
     label: "Arcade",
-    price: { month: "$9/mo", year: "$90/yr" },
+    price: { month: 9, year: 90 },
     offer: "2 months free",
   },
   {
     name: "advanced",
     label: "Advanced",
-    price: { month: "$12/mo", year: "$120/yr" },
+    price: { month: 12, year: 120 },
     offer: "2 months free",
   },
   {
     name: "pro",
     label: "Pro",
-    price: { month: "$15/mo", year: "$150/yr" },
+    price: { month: 15, year: 150 },
     offer: "2 months free",
   },
 ];
@@ -32,19 +32,19 @@ const ADD_ONS = [
     ids: 1,
     title: "Online service",
     description: "Access to multiplayer games",
-    price: { month: "$1/mo", year: "$10/yr" },
+    price: { month: 1, year: 10 },
   },
   {
     ids: 2,
     title: "Large storage",
     description: "Extra 1TB of cloud save",
-    price: { month: "$2/mo", year: "$20/yr" },
+    price: { month: 2, year: 20 },
   },
   {
     ids: 3,
     title: "Customizable Profile",
     description: "Custom theme on your profile",
-    price: { month: "$2/mo", year: "$20/yr" },
+    price: { month: 2, year: 20 },
   },
 ];
 
@@ -52,12 +52,15 @@ function App() {
   const id = React.useId();
   const [step, setStep] = React.useState(1);
   const [period, setPeriod] = React.useState("month");
-  const [planChoice, setPlanChoice] = React.useState(PLANS[0].name);
+  const [planChoice, setPlanChoice] = React.useState(PLANS[0]);
   const [addOns, setAddOns] = React.useState([1, 3]);
 
   function handleChangeStep(newStep) {
     setStep(newStep);
   }
+
+  let sumAddOns = 0;
+  const preffix = period === "month" ? "mo" : "yr";
 
   return (
     <form>
@@ -105,20 +108,22 @@ function App() {
                 <p>You have the option of monthly or yearly billing.</p>
               </div>
               <ul className="plans-selection">
-                {PLANS.map(({ name, label, price, offer }) => (
+                {PLANS.map((plan) => (
                   <li
-                    key={name}
+                    key={plan.name}
                     className={
-                      planChoice === name ? "selected-plan" : undefined
+                      planChoice.name === plan.name
+                        ? "selected-plan"
+                        : undefined
                     }
-                    onClick={() => setPlanChoice(name)}
+                    onClick={() => setPlanChoice(plan)}
                     style={{
-                      backgroundImage: `url(../src/assets/icon-${name}.svg)`,
+                      backgroundImage: `url(../src/assets/icon-${plan.name}.svg)`,
                     }}
                   >
-                    <h4>{label}</h4>
-                    <span className="plan-price">{price[period]}</span>
-                    {period === "year" && <span>{offer}</span>}
+                    <h4>{plan.label}</h4>
+                    <span className="plan-price">{`$${plan.price[period]}/${preffix}`}</span>
+                    {period === "year" && <span>{plan.offer}</span>}
                   </li>
                 ))}
               </ul>
@@ -180,7 +185,7 @@ function App() {
                           <h4>{title}</h4>
                           <span>{description}</span>
                         </div>
-                        <div>{price[period]}</div>
+                        <div>{`$${price[period]}/${preffix}`}</div>
                       </label>
                     </div>
                   );
@@ -190,20 +195,39 @@ function App() {
           )}
           {step === 4 && (
             <section className="section-wrapper">
-              <h1>Finishing up</h1>
-              <p>Double-check everything looks OK before confirming.</p>
+              <div>
+                <h1>Finishing up</h1>
+                <p>Double-check everything looks OK before confirming.</p>
+              </div>
               <dl>
                 <dt>
-                  <span>Arcade(Monthly)</span>
-                  <a type="button">Change</a>
+                  <span>
+                    {planChoice.label}
+                    {period === "month" ? " (Monthly)" : " (Yearly)"}
+                  </span>
+                  <button type="button" onClick={() => setStep(2)}>
+                    Change
+                  </button>
                 </dt>
-                <dd>$9/mo</dd>
-                <dt>Online service</dt>
-                <dd>+$1/mo</dd>
-                <dt>Larger storage</dt>
-                <dd>+$2/mo</dd>
+                <dd>{`$${planChoice.price[period]}/${preffix}`}</dd>
+
+                {addOns.length > 0 &&
+                  addOns.map((add) => {
+                    const { title, price } = ADD_ONS.find(
+                      (el) => el.ids === add
+                    );
+                    sumAddOns += price[period];
+
+                    return (
+                      <div key={add}>
+                        <dt>{title}</dt>
+                        <dd>{`$${price[period]}/${preffix}`}</dd>
+                      </div>
+                    );
+                  })}
+
                 <dt>Total(per month)</dt>
-                <dd>+$12/mo</dd>
+                <dd>{`$${sumAddOns + planChoice.price[period]}/${preffix}`}</dd>
               </dl>
             </section>
           )}
