@@ -1,4 +1,5 @@
 import React from "react";
+import UserInfo from "./components/UserInfo";
 
 const STEPS = [
   { value: 1, label: "your info" },
@@ -51,12 +52,23 @@ const ADD_ONS = [
 function App() {
   const id = React.useId();
   const [step, setStep] = React.useState(1);
+  const [userInfo, setUserInfo] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const [period, setPeriod] = React.useState("month");
   const [planChoice, setPlanChoice] = React.useState(PLANS[0]);
   const [addOns, setAddOns] = React.useState([1, 3]);
 
   function handleChangeStep(newStep) {
     setStep(newStep);
+  }
+  function handleInputChange(e) {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
   }
 
   let sumAddOns = 0;
@@ -81,24 +93,10 @@ function App() {
         <main>
           {step === 1 && (
             <section className="section-wrapper">
-              <div>
-                <h1>Personal info</h1>
-                <p>
-                  Please provide your name, email address, and phone number.
-                </p>
-              </div>
-              <div>
-                <label htmlFor={`name-${id}`}>Name</label>
-                <input type="text" id={`name-${id}`} required />
-              </div>
-              <div>
-                <label htmlFor={`email-${id}`}>Email address</label>
-                <input type="email" id={`email-${id}`} required />
-              </div>
-              <div>
-                <label htmlFor={`phone-${id}`}>Phone number</label>
-                <input type="text" id={`phone-${id}`} required />
-              </div>
+              <UserInfo
+                handleInputChange={handleInputChange}
+                userInfo={userInfo}
+              />
             </section>
           )}
           {step === 2 && (
