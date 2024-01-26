@@ -1,5 +1,7 @@
 import React from "react";
 import UserInfo from "./components/UserInfo";
+import PlansOptions from "./components/PlansOptions";
+import AddOns from "./components/AddOns";
 
 const STEPS = [
   { value: 1, label: "your info" },
@@ -101,94 +103,23 @@ function App() {
           )}
           {step === 2 && (
             <section className="section-wrapper">
-              <div>
-                <h1>Select your plan</h1>
-                <p>You have the option of monthly or yearly billing.</p>
-              </div>
-              <ul className="plans-selection">
-                {PLANS.map((plan) => (
-                  <li
-                    key={plan.name}
-                    className={
-                      planChoice.name === plan.name
-                        ? "selected-plan"
-                        : undefined
-                    }
-                    onClick={() => setPlanChoice(plan)}
-                    style={{
-                      backgroundImage: `url(../src/assets/icon-${plan.name}.svg)`,
-                    }}
-                  >
-                    <h4>{plan.label}</h4>
-                    <span className="plan-price">{`$${plan.price[period]}/${preffix}`}</span>
-                    {period === "year" && <span>{plan.offer}</span>}
-                  </li>
-                ))}
-              </ul>
-              <div className="plan-period">
-                <span className={period === "month" ? "selected" : undefined}>
-                  Monthly
-                </span>
-                <button
-                  type="button"
-                  className="switch"
-                  onClick={() =>
-                    setPeriod(period === "month" ? "year" : "month")
-                  }
-                >
-                  <span
-                    className="switch-ball"
-                    style={{
-                      transition: "transform 300ms",
-                      transform: `translateX(${
-                        period === "year" ? "140%" : "0%"
-                      })`,
-                    }}
-                  />
-                </button>
-                <span className={period === "year" ? "selected" : undefined}>
-                  Yearly
-                </span>
-              </div>
+              <PlansOptions
+                PLANS={PLANS}
+                planChoice={planChoice}
+                setPlanChoice={setPlanChoice}
+                period={period}
+                setPeriod={setPeriod}
+              />
             </section>
           )}
           {step === 3 && (
             <section className="section-wrapper">
-              <div>
-                <h1>Pick Add-ons</h1>
-                <p>Add-ons help enhance your gaming experience.</p>
-              </div>
-              <div className="add-ons-wrapper">
-                {ADD_ONS.map(({ ids, title, description, price }) => {
-                  const addonsId = `${title}-${id}`;
-
-                  return (
-                    <div key={addonsId}>
-                      <label
-                        htmlFor={addonsId}
-                        className={addOns.includes(ids) ? "checked" : undefined}
-                      >
-                        <input
-                          type="checkbox"
-                          id={addonsId}
-                          checked={addOns.includes(ids)}
-                          onChange={(e) => {
-                            const newAddOns = e.target.checked
-                              ? [...addOns, ids]
-                              : addOns.filter((el) => el != ids);
-                            setAddOns(newAddOns);
-                          }}
-                        />
-                        <div>
-                          <h4>{title}</h4>
-                          <span>{description}</span>
-                        </div>
-                        <div>{`$${price[period]}/${preffix}`}</div>
-                      </label>
-                    </div>
-                  );
-                })}
-              </div>
+              <AddOns
+                ADD_ONS={ADD_ONS}
+                addOns={addOns}
+                setAddOns={setAddOns}
+                period={period}
+              />
             </section>
           )}
           {step === 4 && (
