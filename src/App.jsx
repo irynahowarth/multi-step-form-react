@@ -38,9 +38,10 @@ function App() {
     let errorObj = {};
 
     //Name validation
+    const newName = userInfo.name.replace(/\s/g, "");
     if (userInfo.name === "") {
       errorObj.name = "This field is required";
-    } else if (userInfo.name.length < 3) {
+    } else if (newName.length < 3) {
       errorObj.name = "Should be at least 3 characters";
     }
 
@@ -54,6 +55,7 @@ function App() {
     // Phone validation
     const phoneRegex = new RegExp(`^[+]*[0-9]{10}$`);
     const phoneTest = userInfo.phone.replace(/\s/g, "");
+
     if (userInfo.phone === "") {
       errorObj.phone = "This field is required";
     } else if (!phoneRegex.test(phoneTest)) {
