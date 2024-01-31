@@ -3,6 +3,7 @@ html {
 }
 *, *:before, *:after {
   box-sizing: inherit;
+  outline: none;
 }
 html, body{
   margin: 0;
@@ -112,6 +113,10 @@ p{
   margin-bottom: 14px;
 }
 
+.input-wrapper{
+  position: relative;
+}
+
 label{
   font-size: 13px;
   display: block;
@@ -127,7 +132,40 @@ input{
   color: hsl(231, 11%, 63%);
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 }
+input:hover,input:focus-visible {
+  border-color: hsl(243, 100%, 62%);
+}
+
+.input-wrapper input{
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+}
+.input-wrapper input::placeholder{
+  color: hsl(231, 11%, 63%);
+  font-weight: 500;
+}
+
+
+.msg-required{
+  color: hsl(354, 84%, 57%);
+  position: absolute;
+  top:0;
+  right: 0;
+  display: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.invalid .msg-required{
+  display: block;
+}
+
+.invalid input{
+  border-color: hsl(354, 84%, 57%);
+}
+
 
 
 .btn{
@@ -350,3 +388,4 @@ input{
   margin: 0 auto;
   justify-content: center;
 }
+
