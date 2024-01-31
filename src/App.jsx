@@ -28,8 +28,14 @@ function App() {
     });
   }
 
+  function handleFormValidation(e) {
+    e.preventDefault();
+    console.log("validation");
+    // handleChangeStep(step + 1);
+  }
+
   return (
-    <form>
+    <form onSubmit={handleFormValidation}>
       <div className="form-wrapper">
         <header className="form-header">
           <Sidebar steps={data.STEPS} currentStep={step} />

@@ -13,9 +13,8 @@ export default function Actions({ step, handleChangeStep }) {
         </button>
       )}
       <button
-        type="button"
+        type="submit"
         className={step !== 4 ? "btn primary" : "btn primary confirm"}
-        onClick={() => handleChangeStep(step + 1)}
       >
         {step !== 4 ? "Next Step" : "Confirm"}
       </button>
