@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Summary({ planChoice, period, addOns, ADD_ONS }) {
+export default function Summary({
+  planChoice,
+  period,
+  addOns,
+  ADD_ONS,
+  setStep,
+}) {
   const preffix = period === "month" ? "mo" : "yr";
   let sumAddOns = 0;
   return (

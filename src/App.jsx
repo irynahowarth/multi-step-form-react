@@ -125,6 +125,7 @@ function App() {
                 period={period}
                 addOns={addOns}
                 ADD_ONS={data.ADD_ONS}
+                setStep={setStep}
               />
             </section>
           )}
