@@ -55,6 +55,7 @@ main{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 
 .form-header li{
@@ -89,7 +90,7 @@ main{
 }
 
 .section-wrapper{
-  padding: 36px 90px;
+  padding: 36px 80px;
   display: flex;
   flex-direction: column;
   gap:23px;
@@ -97,10 +98,19 @@ main{
 }
 
 .section-actions{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left:0;
+}
+.section-actions >div{
+  justify-content: space-between;
   display: flex;
   padding: 36px 90px;
-  justify-content: space-between;
+
 }
+
+
 
 h1{
   color: hsl(213, 96%, 18%);
@@ -223,6 +233,10 @@ input:hover,input:focus-visible {
   border-color:hsl(243, 100%, 62%) ;
 }
 
+.plans-selection li:hover{
+  border-color:hsl(243, 100%, 62%) ;
+}
+
 .plans-selection h4{
   font-size: 16px;
   font-weight: 500;
@@ -310,9 +324,11 @@ input:hover,input:focus-visible {
 
 .add-ons-wrapper label.checked{
   background-color: hsl(217, 100%, 97%);
-  border-color: hsl(243, 100%, 62%);;
+  border-color: hsl(243, 100%, 62%);
 }
-
+.add-ons-wrapper label:hover{
+  border-color: hsl(243, 100%, 62%);
+}
 
 .add-ons-wrapper label h4{
   font-size: 14px;
@@ -342,6 +358,9 @@ input:hover,input:focus-visible {
   font-weight: 500;
   font-size: 13px;
   padding: 0;
+}
+.summary-wrapper .btn:hover{
+  color: hsl(243, 100%, 62%);
 }
 
 .summary-wrapper >div{

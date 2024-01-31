@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Actions({ step, handleChangeStep }) {
   return (
-    <>
+    <div>
       {step !== 1 && (
         <button
           type="button"
@@ -18,6 +18,6 @@ export default function Actions({ step, handleChangeStep }) {
       >
         {step !== 4 ? "Next Step" : "Confirm"}
       </button>
-    </>
+    </div>
   );
 }
