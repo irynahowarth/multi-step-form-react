@@ -225,23 +225,21 @@ input:hover,input:focus-visible {
 
 .plans-selection{
   display: flex;
-  gap:20px;
+  flex-direction: column;
+  gap:12px;
 }
 
 .plans-selection li{
   border: 1px solid hsl(231, 11%, 63%);
   border-radius: 5px;
-  padding: 102px 15px 16px ;
+  padding: 15px;
+  padding-left: 70px;
   cursor: pointer;
-  width: 136px;
-  min-height: 158px;
   background-repeat: no-repeat;
-  background-position: 15px 19px;
+  background-position: 15px 15px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-bottom: 11px;
-  margin-top: 15px;
+  gap:5px;
 }
 
 .plans-selection li.selected-plan{
@@ -254,7 +252,7 @@ input:hover,input:focus-visible {
 }
 
 .plans-selection h4{
-  font-size: 16px;
+  font-size:1rem;
   font-weight: 500;
   color: hsl(213, 96%, 18%);
 }
@@ -308,7 +306,7 @@ input:hover,input:focus-visible {
 .add-ons-wrapper{
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .add-ons-wrapper>div{
@@ -334,7 +332,7 @@ input:hover,input:focus-visible {
   margin: 0;
   width: 100%;
   gap:10px;
-  padding: 18px 20px;
+  padding: 14px;
 }
 
 
@@ -415,6 +413,7 @@ input:hover,input:focus-visible {
 .section-wrapper.section-final{
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
 .section-final img{
@@ -489,6 +488,26 @@ input:hover,input:focus-visible {
   }
   .section-actions{
     position: absolute;
+  }
+  .plans-selection{
+    flex-direction: row;
+    gap:20px;
+  }
+  .plans-selection li{
+    padding: 102px 15px 16px ; 
+    width: 136px;
+    min-height: 158px; 
+    margin-bottom: 11px;
+    margin-top: 15px;
+    gap:7px;
+    background-position: 15px 19px;
+  }
+
+  .add-ons-wrapper{
+    gap:14px;
+  }
+  .add-ons-wrapper label{
+    padding: 18px 20px;
   }
   
 }
